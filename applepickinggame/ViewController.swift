@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         self.appleImage3.image = UIImage(named: "apple.jpg")
         self.appleImage4.image = UIImage(named: "apple.jpg")
         timer = Timer()
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.count), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.count), userInfo: nil, repeats: true)
 
     }
 
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     func count()
     {
         counter = counter + 1
-        timerLabel.text  = String( counter)
+        timerLabel.text  = "\(String( counter)) seconds"
     }
 
     @IBAction func up(_ sender: Any) {
@@ -141,7 +141,11 @@ class ViewController: UIViewController {
     {
         if (self.appleImage1.isHidden == true && self.appleImage2.isHidden == true && self.appleImage3.isHidden == true && self.appleImage4.isHidden == true){
             timer?.invalidate()
-            self.timerLabel.text = "You won! It took you \(self.timerLabel.text)"
+            if(counter <= 10){
+                self.timerLabel.text = "You won! It took you \(self.counter) seconds."
+            }else{
+                self.timerLabel.text = "You lost! It took you \(self.counter) seconds."
+            }
         }
         return first_View.frame.intersects(second_View.frame)
     }
